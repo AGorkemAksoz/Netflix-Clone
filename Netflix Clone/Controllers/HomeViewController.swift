@@ -23,10 +23,10 @@ class HomeViewController: UIViewController {
         table.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
         return table
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         view.addSubview(homeFeedTable)
         
@@ -37,6 +37,12 @@ class HomeViewController: UIViewController {
         
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
+        
+//        getTrendingMovies()
+//        getTrendingTvs()
+//        getUpcomingMovies()
+//        getPopularMovies()
+        getTopRatedMovies()
     }
     
     private func configureNavBar() {
@@ -57,9 +63,44 @@ class HomeViewController: UIViewController {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
     }
-
-
+    
+    private func getTrendingMovies() {
+        APICaller.shared.getTrendingMovies { results in
+            switch results {
+            case .success(let movies):
+                print(movies)
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
+    }
+    
+    private func getTrendingTvs() {
+        APICaller.shared.getTrendingTVs { results in
+            
+        }
+    }
+    
+    private func getUpcomingMovies() {
+        APICaller.shared.getUpcomingMovies { results  in
+            
+        }
+    }
+    
+    private func getPopularMovies() {
+        APICaller.shared.getPopularMovies { result in
+            
+        }
+    }
+    
+    private func getTopRatedMovies() {
+        APICaller.shared.getTopRatedMovies { result in
+            
+        }
+    }
 }
+
+
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -96,7 +137,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y , width: 100, height: header.bounds.height)
         header.textLabel?.textColor = .white
-        header.textLabel?.text = header.textLabel?.text?.lowercased()
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
