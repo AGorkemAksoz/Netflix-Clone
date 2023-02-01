@@ -90,6 +90,38 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         140
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let title = titles[indexPath.row]
+        
+        guard let titleName = title.original_title ?? title.original_name  else { return }
+        
+        APICaller.shared.getMovie(with: titleName) { [weak self] result in
+            switch result {
+            case .success(let videoElement):
+                DispatchQueue.main.async {
+                    let vc = TitlePreviewViewController()
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: title.overview!))
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
+    }
+    
+}
+
+extension SearchViewController: SerchResultsViewControllerDelegate {
+    func serchResultsViewControllerDidTapItem(_ viewModel: TitlePreviewViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            let vc = TitlePreviewViewController()
+            vc.configure(with: viewModel)
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     
 }
 
@@ -101,6 +133,7 @@ extension SearchViewController: UISearchResultsUpdating {
         !query.trimmingCharacters(in: .whitespaces).isEmpty,
         query.trimmingCharacters(in: .whitespaces).count >= 3,
         let resultController = searchController.searchResultsController as? SerchResultsViewController else { return }
+        resultController.delegate = self
         
         APICaller.shared.search(with: query) { result in
             DispatchQueue.main.async {

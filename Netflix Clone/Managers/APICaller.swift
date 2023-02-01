@@ -3,13 +3,15 @@
 //  Netflix Clone
 //
 //  Created by Ali Görkem Aksöz on 31.01.2023.
-//https://api.themoviedb.org/3/movie/upcoming?api_key=1f4cd44a27f52e7c527fa1a39efc8c2d&language=en-US&page=1
+//
 
 import Foundation
 
 struct Constants {
     static let API_KEY = "1f4cd44a27f52e7c527fa1a39efc8c2d"
     static let baseURL = "https://api.themoviedb.org"
+    static let youtubeApiKey = "AIzaSyCwSBJRmumsDC7djvQfYVJ5bt7YvSHyeiA"
+    static let youtubeBaseUrl = "https://youtube.googleapis.com/youtube/v3/search?"
 }
 
 enum APIError: Error {
@@ -134,6 +136,23 @@ class APICaller {
         task.resume()
     }
     
+    func getMovie(with query: String, completion: @escaping (Result<VideoElement, APIError>) -> ()) {
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        guard let url = URL(string: "\(Constants.youtubeBaseUrl)q=\(query)&key=\(Constants.youtubeApiKey)") else { return }
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let result = try JSONDecoder().decode(YoutubeSearchResponse.self, from: data)
+                completion(.success(result.items[0]))
+            } catch  {
+                print("Api caller error")
+                completion(.failure(.failedToGetData))
+            }
+        }
+        task.resume()
+        
+    }
+    
 }
-
-//https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher

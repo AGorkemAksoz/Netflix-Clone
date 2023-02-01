@@ -27,6 +27,9 @@
 		DDC0D193298A78E800779DD9 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC0D192298A78E800779DD9 /* TitleTableViewCell.swift */; };
 		DDC0D195298A7E5E00779DD9 /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC0D194298A7E5E00779DD9 /* TitleViewModel.swift */; };
 		DDC0D197298A89FB00779DD9 /* SerchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC0D196298A89FB00779DD9 /* SerchResultsViewController.swift */; };
+		DDC0D19B298AA42500779DD9 /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC0D19A298AA42500779DD9 /* YoutubeSearchResponse.swift */; };
+		DDC0D19D298AF7F200779DD9 /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC0D19C298AF7F200779DD9 /* TitlePreviewViewController.swift */; };
+		DDC0D19F298AFA6400779DD9 /* TitlePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC0D19E298AFA6400779DD9 /* TitlePreviewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		DDC0D192298A78E800779DD9 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		DDC0D194298A7E5E00779DD9 /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
 		DDC0D196298A89FB00779DD9 /* SerchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerchResultsViewController.swift; sourceTree = "<group>"; };
+		DDC0D19A298AA42500779DD9 /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
+		DDC0D19C298AF7F200779DD9 /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
+		DDC0D19E298AFA6400779DD9 /* TitlePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				DDC0D194298A7E5E00779DD9 /* TitleViewModel.swift */,
+				DDC0D19E298AFA6400779DD9 /* TitlePreviewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -131,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				DD8BBFCF2989B184001CFF44 /* Movie.swift */,
+				DDC0D19A298AA42500779DD9 /* YoutubeSearchResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -167,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				DDC0D196298A89FB00779DD9 /* SerchResultsViewController.swift */,
+				DDC0D19C298AF7F200779DD9 /* TitlePreviewViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -259,8 +268,11 @@
 				DD826D8529894E9700CE155D /* DownloadsViewController.swift in Sources */,
 				DD826D6A29894C1D00CE155D /* AppDelegate.swift in Sources */,
 				DD8BBFD22989B564001CFF44 /* Extensions.swift in Sources */,
+				DDC0D19B298AA42500779DD9 /* YoutubeSearchResponse.swift in Sources */,
 				DD826D6C29894C1D00CE155D /* SceneDelegate.swift in Sources */,
+				DDC0D19F298AFA6400779DD9 /* TitlePreviewViewModel.swift in Sources */,
 				DD826D8129894E6300CE155D /* UpcomingViewController.swift in Sources */,
+				DDC0D19D298AF7F200779DD9 /* TitlePreviewViewController.swift in Sources */,
 				DD8BBFD02989B184001CFF44 /* Movie.swift in Sources */,
 				DD826D7F29894E4300CE155D /* HomeViewController.swift in Sources */,
 				DDC0D195298A7E5E00779DD9 /* TitleViewModel.swift in Sources */,
