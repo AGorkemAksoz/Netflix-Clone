@@ -1,6 +1,13 @@
 # Netflix-Clone
 It's a type of Netflix Clone app
 
+- MVC
+- URLSession
+- %100 Programmatic
+- UITabBar
+- UISearchController
+- CoreData
+- Youtube API
 
 
 
