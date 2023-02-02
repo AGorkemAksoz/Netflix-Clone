@@ -52,7 +52,19 @@ class CollectionViewTableViewCell: UITableViewCell {
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
         }
-
+    }
+    
+    private func downloadTitleAt(indexPath: IndexPath) {
+        
+    
+        DataPersistenceManager.shared.downloadTitle(with: titles[indexPath.row]) { result in
+            switch result {
+            case .success():
+                NotificationCenter.default.post(name: NSNotification.Name("Downloaded"), object: nil)
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
     }
 
 }
@@ -88,5 +100,20 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let config = UIContextMenuConfiguration { [weak self] _ in
+            let downloadAction = UIAction(
+                title: "Download",
+                state: .off) { _ in
+                    self?.downloadTitleAt(indexPath: indexPath)
+                }
+            return UIMenu(title: "",options: .displayInline, children: [downloadAction])
+        }
+        return config
+
+    }
+    
+    
     
 }
